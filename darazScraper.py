@@ -1,12 +1,12 @@
 import time
 from selenium import webdriver as wb
 from selenium.webdriver.chrome.options import Options
-import urllib
+import urllib.request
 from bs4 import BeautifulSoup
 import os
 
 #choose if you want to start chrome in headless mode
-headless = True
+headless = False
 
 #start a webdriver
 if(headless):
@@ -18,10 +18,12 @@ else:
 
 #list of products to scrape
 url_list = [
-    'https://www.daraz.com.bd/products/snicker-10-piece-pack-14-x-10-140-gm-i150680985-s1077384186.html?spm=a2a0e.searchlist.list.1.59a06de78wwYUh&search=1',
-    'https://www.daraz.com.bd/products/snickers-chocolate-50g-india-i140612583-s1064098761.html?spm=a2a0e.searchlist.list.13.59a06de7oGthIN&search=1',
-    'https://www.daraz.com.bd/products/snickers-chocolate-dubai-50grm-x-12pic600grm-i131652537-s1052056630.html?spm=a2a0e.searchlist.list.37.59a06de7sQ6pBL&search=1'
+    'https://www.daraz.com.bd/products/t1-i144906075-s1109262093.html?spm=a2a0e.home.just4u.15.735212f7edFMSl&scm=1007.28811.244313.0&pvid=95f78e5f-734b-4509-bc4e-8d607d3c8720&clickTrackInfo=pvid%3A95f78e5f-734b-4509-bc4e-8d607d3c8720%3Bchannel_id%3A0000%3Bmt%3Ahot%3Bitem_id%3A144906075%3B',
+    'https://www.daraz.com.bd/products/dx-68-led-decor-1pcs-i147696679-s1073438190.html?spm=a2a0e.home.just4u.9.4c2e12f72oZ5Qb&scm=1007.28811.244313.0&pvid=92c23e84-3352-4b5c-b0a9-b499d50ee433&clickTrackInfo=pvid%3A92c23e84-3352-4b5c-b0a9-b499d50ee433%3Bchannel_id%3A0000%3Bmt%3Ahot%3Bitem_id%3A147696679%3B'
     ]
+
+
+
 
 
 #scrolling function
@@ -91,7 +93,7 @@ def scrapeImagesOf(url):
 for url in url_list:
     #creates directory for scraped images
     parent_dir = os.getcwd()
-    product_folder = "Snickers"
+    product_folder = "New Panda"
     product_path = os.path.join(parent_dir, product_folder)
 
     if not os.path.exists(product_path):
