@@ -3,7 +3,13 @@ This is a python based scrapper designed to scrape the review images of products
 
 
 ## Dependencies
+Python - 3.9.6
 The scrapper uses Selenium and BeautifulSoup modules.
 
-`pip install Selenium`
-`pip install BeautifulSoup`
+`pip install -r requirements.txt`
+
+## Download Webdriver
+Download webdrivers from the following links:
+(The version of the driver should match the browser version you are using)
+Chrome: https://chromedriver.chromium.org/downloads
+Firefox: https://github.com/mozilla/geckodriver/releases
