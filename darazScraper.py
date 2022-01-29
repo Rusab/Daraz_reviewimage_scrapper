@@ -1,20 +1,21 @@
 import time
 from selenium import webdriver as wb
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 import urllib.request
 from bs4 import BeautifulSoup
 import os
 
 #choose if you want to start chrome in headless mode
 headless = False
-
+driver_service = Service('chromedriver.exe')
 #start a webdriver
 if(headless):
     headless_option = Options()
     headless_option.add_argument("--headless")
-    driver = wb.Chrome('chromedriver.exe', options = headless_option)
+    driver = wb.Chrome(service = driver_service, options = headless_option)
 else: 
-    driver = wb.Chrome('chromedriver.exe')
+    driver = wb.Chrome(service = driver_service)
 
 #list of products to scrape
 url_list = [
@@ -60,9 +61,11 @@ def scrapeImagesOf(url):
     while(flag):
         soup = getDriverSoup(url, not (nextPage))
         objs = soup.find_all(class_ = 'pdp-common-image review-image__item')
+
         flag = False
-        for objs in objs:
-            link = objs.div["style"]
+        for obj in objs:
+            img = obj.find(class_ = "image")
+            link = img.get('style')
             pos1 = link.find('url("')
             pos2 = link.find(');')
             link = link[pos1+5:pos2-1]

@@ -1,0 +1,4 @@
+#Python 3.9.6
+
+selenium==4.1.0
+beautifulsoup4==4.10.0
