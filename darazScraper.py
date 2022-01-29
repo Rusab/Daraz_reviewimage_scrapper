@@ -2,6 +2,7 @@ import time
 from selenium import webdriver as wb
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 import urllib.request
 from bs4 import BeautifulSoup
 import os
@@ -19,8 +20,8 @@ else:
 
 #list of products to scrape
 url_list = [
-    'https://www.daraz.com.bd/products/t1-i144906075-s1109262093.html?spm=a2a0e.home.just4u.15.735212f7edFMSl&scm=1007.28811.244313.0&pvid=95f78e5f-734b-4509-bc4e-8d607d3c8720&clickTrackInfo=pvid%3A95f78e5f-734b-4509-bc4e-8d607d3c8720%3Bchannel_id%3A0000%3Bmt%3Ahot%3Bitem_id%3A144906075%3B',
-    'https://www.daraz.com.bd/products/dx-68-led-decor-1pcs-i147696679-s1073438190.html?spm=a2a0e.home.just4u.9.4c2e12f72oZ5Qb&scm=1007.28811.244313.0&pvid=92c23e84-3352-4b5c-b0a9-b499d50ee433&clickTrackInfo=pvid%3A92c23e84-3352-4b5c-b0a9-b499d50ee433%3Bchannel_id%3A0000%3Bmt%3Ahot%3Bitem_id%3A147696679%3B'
+    'https://www.daraz.com.bd/products/dettol-soap-aloe-vera-75gm-bathing-bar-soap-with-aloe-vera-extract-i125973891-s1046091443.html?spm=a2a0e.searchlist.list.4.4d105892swMENZ&search=1',
+ 
     ]
 
 
@@ -77,7 +78,7 @@ def scrapeImagesOf(url):
         
         try:
             driver.execute_script("window.scrollTo(0, window.scrollY" + '-' + "1500)")
-            button_list = driver.find_elements_by_xpath('//*[@id="module_product_review"]/div/div[3]/div[2]/div/button[2]/i')
+            button_list = driver.find_elements(By.XPATH, '//*[@id="module_product_review"]/div/div/div[3]/div[2]/div/button[2]/i')
             button_list[0].click()
             sec += 1
             print("Going to section", sec)
@@ -91,12 +92,12 @@ def scrapeImagesOf(url):
                 flag = True
 
         except:
-            print("No more sections")
+            print("No more sections") 
 
 for url in url_list:
     #creates directory for scraped images
     parent_dir = os.getcwd()
-    product_folder = "New Panda"
+    product_folder = "Dettol Soap Aloe Vera"
     product_path = os.path.join(parent_dir, product_folder)
 
     if not os.path.exists(product_path):
